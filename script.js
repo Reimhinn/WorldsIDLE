@@ -62,7 +62,7 @@ let baseEndExpeditionCost = 3000;
 
 
 let mobHealth = baseMobHealth;
-let gold = 999;
+let gold = 0;
 let mobLevel = 1;
 let protStock = 0;
 let damage = 1;
