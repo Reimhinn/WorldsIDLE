@@ -10,7 +10,7 @@ const goldContainer = document.getElementById('gold');
 const goldMultiplierContainer = document.getElementById('gold-multiplier');
 
 const contaminationBLock = document.getElementById('contamination')
-const proteineBlock = document.getElementById('proteine')
+const clicPowerBlock = document.getElementById('clic-power-block')
 const nextMob1Block = document.getElementById('next-cost-1')
 const nextMob2Block = document.getElementById('next-cost-2')
 const nextMob3Block = document.getElementById('next-cost-3')
@@ -19,52 +19,57 @@ const mobLevelBlock = document.getElementById('mob-level-block');
 const mobLevelContainer = document.getElementById('mob-level');
 const mobLevelCostContainer = document.getElementById('mob-next-level-cost');
 const buyMobLevelButtonContainer = document.getElementById('buy-mob-level');
-const buyProtForGoldButton = document.getElementById('buy-prot-for-gold');
-const protCount = document.getElementById('prot-count');
-const buyClicForProt = document.getElementById('buy-clic-for-prot')
+const buyClicPowerButton = document.getElementById('buy-clic-power')
 const clicPowerContainer = document.getElementById('clic-power')
 const x10LevelButtonContainer = document.getElementById('x10-level-button')
 const buyDotForGold = document.getElementById('buy-dot-for-gold')
 const dotCount = document.getElementById('dot-count')
-const x10ProtButtonContainer = document.getElementById('x10-prot-button')
-const x100ProtButtonContainer = document.getElementById('x100-prot-button')
-const x1000ProtButtonContainer = document.getElementById('x1000-prot-button')
+const x10ClicPowerButtonContainer = document.getElementById('x10-clic-button')
+const x100ClicPowerButtonContainer = document.getElementById('x100-clic-button')
+const x1000ClicPowerButtonContainer = document.getElementById('x1000-clic-button')
+const x10DotButtonContainer = document.getElementById('x10-dot-button')
+const x100DotButtonContainer = document.getElementById('x100-dot-button')
+const x1000DotButtonContainer = document.getElementById('x1000-dot-button')
 const buyDiamondForGold = document.getElementById('buy-diamond-for-gold')
 const diamondCount = document.getElementById('diamond-count')
-const nextWorldButton1 = document.getElementById('next-world-button-1')
+const nextWorldButton1 = document.getElementById('next-world-button-1-A')
 const minerRecruit = document.getElementById('miner-recruit')
 const minersCount = document.getElementById('miners')
 const countdownContainer = document.getElementById('countdown')
 const diamondPercentageContainer = document.getElementById('diamond-percentage')
 const endExpeditionCostContainer = document.getElementById('end-expedition-cost')
 const endExpeditionContainer = document.getElementById('end-expedition-button')
+const clicPowerCostContainer = document.getElementById('clic-power-cost')
+const toBeContinuedTextContainer = document.getElementById('to-be-continued-text')
 
 mobImage.addEventListener('click', attackMob);
 buyMobLevelButtonContainer.addEventListener('click', buyMobLevel);
-buyProtForGoldButton.addEventListener('click', buyProt)
-buyClicForProt.addEventListener('click', buyClic)
+buyClicPowerButton.addEventListener('click', buyClic)
 x10LevelButtonContainer.addEventListener('click', buy10Level)
 buyDotForGold.addEventListener('click', buyDot)
-x10ProtButtonContainer.addEventListener('click', buyProtx10)
-x100ProtButtonContainer.addEventListener('click', buyProtx100)
-x1000ProtButtonContainer.addEventListener('click', buyProtx1000)
+x10ClicPowerButtonContainer.addEventListener('click', buyClicPowerx10)
+x100ClicPowerButtonContainer.addEventListener('click', buyClicPowerx100)
+x1000ClicPowerButtonContainer.addEventListener('click', buyClicPowerx1000)
+x10DotButtonContainer.addEventListener('click', buyDotx10)
+x100DotButtonContainer.addEventListener('click', buyDotx100)
+x1000DotButtonContainer.addEventListener('click', buyDotx1000)
 nextWorldButton1.addEventListener('click', goToNextWorld1)
 minerRecruit.addEventListener('click', recruitMiner)
 endExpeditionContainer.addEventListener('click', endExpedition)
 
-let baseMobGold = 1;
+let baseMobGold = 2;
 let baseMobHealth = 5;
 let baseMobLevelCost = 10;
 let baseDiamondCountDown = 30;
 let diamondChance = 0;
 let minerPercentage = 0;
 let baseEndExpeditionCost = 3000;
+let clicPowerCost = 50;
 
 
 let mobHealth = baseMobHealth;
-let gold = 0;
+let gold = 100000;
 let mobLevel = 1;
-let protStock = 0;
 let damage = 1;
 let dot = 0;
 let miner = 0;
@@ -109,18 +114,10 @@ function buyMobLevel() {
   }
 }
 
-function buyProt() {
-  if (gold >= 10) {
-    protStock++
-    gold -= 10
-    updateData();
-  }
-}
-
 function buyClic() {
-  if (protStock >= 5) {
+  if (gold >= 50) {
     damage++;
-    protStock -= 5;
+    gold -= 50;
     updateData()
   }
 }
@@ -144,7 +141,7 @@ function endExpedition() {
 }
 
 function getDiamondChancePercentage() {
-  minerPercentage = miner * 5;
+  minerPercentage = miner * 2;
   diamondChance = 100 - minerPercentage;
   return 100 - diamondChance;
 }
@@ -176,7 +173,6 @@ function diamondTimer() {
 }
 
 function diamondFound() {
-  alert('Vous avez trouvé un diamant !')
   diamond++
 }
 
@@ -279,6 +275,29 @@ function buyDot() {
   }
 }
 
+function buyDotx10() {
+  if (gold >= 2000) {
+  for (let i = 0; i < 10; i++) {
+    buyDot()
+  }
+  }
+}
+
+function buyDotx100() {
+  if (gold >= 20000) {
+  for (let i = 0; i < 100; i++) {
+    buyDot()
+  }
+  }
+}
+function buyDotx1000() {
+  if (gold >= 200000) {
+  for (let i = 0; i < 1000; i++) {
+    buyDot()
+  }
+  }
+}
+
 function applyDot() {
   mobHealth -= dot;
   if (mobHealth <= 0) {
@@ -289,26 +308,26 @@ function applyDot() {
 
 
 
-function buyProtx10() {
+function buyClicPowerx10() {
   if (gold >= 100) {
   for (let i = 0; i < 10; i++) {
-    buyProt()
+    buyClic()
     }
   }
 }
 
-function buyProtx100() {
+function buyClicPowerx100() {
   if (gold >= 1000) {
   for (let i = 0; i < 100; i++) {
-    buyProt()
+    buyClic()
     }
   }
 }
 
-function buyProtx1000() {
+function buyClicPowerx1000() {
   if (gold >= 10000) {
   for (let i = 0; i < 1000; i++) {
-    buyProt()
+    buyClic()
     }
   }
 }
@@ -335,8 +354,9 @@ function openBox () {
 
 function goToNextWorld1 () {
   if (diamond >= 5) {
-  mobBlock2.style.display = 'block';
+  // mobBlock2.style.display = 'block';
   nextWorldButton1.style.display = 'none';
+  toBeContinuedTextContainer.style.display = 'block';
   }
 }
 
@@ -346,7 +366,6 @@ function updateData() {
   goldMultiplierContainer.textContent = getGoldMultiplier();
   mobLevelContainer.textContent = mobLevel;
   mobLevelCostContainer.textContent = getMobLevelCost();
-  protCount.textContent = protStock;
   clicPowerContainer.textContent = damage;
   dotCount.textContent = dot;
   minersCount.textContent = miner;
@@ -354,30 +373,45 @@ function updateData() {
   countdownContainer.textContent = diamondCountDownTime;
   diamondPercentageContainer.textContent = getDiamondChancePercentage();
   endExpeditionCostContainer.textContent = baseEndExpeditionCost;
+  clicPowerCostContainer.textContent = clicPowerCost;
 
+  if (gold < 1000 && nextWorldButton1.style.display !== 'block')
+  nextWorldButton1.style.display = 'none';
 
-  if (gold >= getMobLevelCost() && proteineBlock.style.display === 'none') {
+  if (gold >= getMobLevelCost() && clicPowerBlock.style.display === 'none') {
     mobLevelBlock.style.display = 'block';
     nextMob1Block.style.display = "none";
     nextMob2Block.style.display = 'block'
   }
 
   if (gold >= 50 && contaminationBLock.style.display === 'none') {
-    proteineBlock.style.display = 'block';
+    clicPowerBlock.style.display = 'block';
     nextMob2Block.style.display = 'none';
     nextMob3Block.style.display = 'block'
   }
 
-  if (gold >= 200) {
+  if (gold >= 200 && miningBLock.style.display === 'none') {
     contaminationBLock.style.display = 'block';
     nextMob3Block.style.display = 'none';
     nextMob4Block.style.display = 'block';
   }
 
-  if (gold >= 1000) {
+  if (gold >= 1000 && toBeContinuedTextContainer.style.display === 'none') {
     miningBLock.style.display = 'block';
     nextMob4Block.style.display = 'none';
+    nextWorldButton1.style.display = 'block';
   }
+
+  if (diamond < 5){
+    nextWorldButton1.id = 'next-world-button-1-B'
+  } else {
+    nextWorldButton1.id = 'next-world-button-1-A'
+  }
+
+  if (miner === 50) {
+    minerRecruit.style.display = 'none'
+  }
+
 
   healthPercentage = getHealthPercentage();
 
@@ -385,6 +419,7 @@ function updateData() {
   // else if (mobIsBox) {
   //   spawnBox()
   // }
+
 
 
   if (mobIsBoss) {

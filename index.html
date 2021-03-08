@@ -3,130 +3,140 @@
   <head>
       <meta charset="utf-8" />
       <link rel="stylesheet" href="style.css">
-      <title>clicker zero</title>
+      <title>WorldsIDLE</title>
   </head>
   <body>
-    <h1 id="world-1-title">Le Marais</h1>
-    <div id="mob-block">
-      <img
-        src="mob/mob-A.png"
-        id="mob-image"
-        height="200px"
-        width="200px"
-      >
-      <!-- <button id="open-box" onclick="document.getElementById('mob-image').src='mob/open-box.png'">ouvrez la boite</button> -->
-      <!-- </div id='box-found-block' style="display: none;">Vous avez trouvez une boite !</div> -->
-      <br>
-      <div id="mob-health-block">
-      <img src='icones/heart.png'
-        height="25px"
-        width="25px">
-      <span id="mob-health"></span>
-      </div>
-    </div>
-
-    <div id="gold-block">
-      <img src="icones/gold.png">
-      <span id="gold"></span>
-      <br>
-      x
-      <span id="gold-multiplier"></span>
-    </div>
-
-    <div id="next-cost-1">
-      prochain coût : <span class="red-gold">10 or</span>
-    </div>
-
-    <div
-      id="mob-level-block"
-      style="display: none;"
-    >
-      niveau du monstre :
-      <span id="mob-level"></span>
-      <button id="buy-mob-level" class='solo-button'>
-        <img src="icones/level-up.jpg" height="10px" width="10px">
-      </button>
-      <button id="x10-level-button" class="multi-button">
-        x10
-      </button>
-      <br>
-      coût du prochain niveau :
-      <span id="mob-next-level-cost"></span>
-      <br>
-
-    </div>
-
-    <div
-    id="next-cost-2"
-    style="display: none;">
-      prochain coût : <span class="red-gold">50 or</span>
-    </div>
-
-    <div
-    id="proteine"
-    style="display: none;">
-      protéines :
-      <span id="prot-count"></span>
-      <button id="buy-prot-for-gold" class='solo-button'><img src="icones/+.png" height="10px" width="10px"></button>
-      <button id="x10-prot-button" class="multi-button">x10</button>
-      <button id="x100-prot-button" class="multi-button">x100</button>
-      <button id="x1000-prot-button" class="multi-button">x1000</button>
-      <br>
-      coût : 10 <img src="icones/gold.png">
-      <br>
-      <br>
-      <button id="buy-clic-for-prot">1 puissance de clic pour 5 barres de proteine</button>
-      <br>
-      puissance de clic :
-      <span id="clic-power"></span>
-      <img id="curseur-image" src="icones/curseur.png"
-        height="12px"
-        width="12px">
-    </div>
-
-
-    <div
-    id="next-cost-3"
-    style="display: none;">
-      prochain coût : <span class="red-gold">200 or</span>
-    </div>
-    <div
-    id="contamination"
-    style="display: none;">
-      <button id="buy-dot-for-gold">1 covid contre 200 or</button>
-      <br>
-      compteur de covid :
-      <span id="dot-count"></span>
-      <img id="covid-ico" src="icones/covid-19.webp"
-        height="12px"
-        width="12px">
-    </div>
-    <div
-      id="next-cost-4"
-      style="display: none;">
-      prochain coût : <span class="red-gold">1000 or</span>
-    </div>
-    <div
-    id="mining-block"
-    style="display: none;">
-      <button id="miner-recruit">engager un mineur pour 1000 or</button>
-      <br>
-      mineurs : <span id="miners">1</span>
-      <br>
-        <div id="expedition-block" style="display: none;">
-        <p id="expedition-loading-text">expédition en cours... <span id="countdown"></span><br>
-        <button id="end-expedition-button">terminer l'expédition : <span id="end-expedition-cost"></span>
-        <img src="icones/gold.png"></button></p>
-        <span id="diamond-percentage"></span>% de chance de trouver un diamant
+    <div id="world-block-1">
+      <h1 id="world-1-title">Le Marais</h1>
+      <div id="mob-block">
+        <img
+          src="mob/mob-A.png"
+          id="mob-image"
+          height="200px"
+          width="200px"
+        >
+        <!-- <button id="open-box" onclick="document.getElementById('mob-image').src='mob/open-box.png'">ouvrez la boite</button> -->
+        <!-- </div id='box-found-block' style="display: none;">Vous avez trouvez une boite !</div> -->
         <br>
-        diamants trouvés : <span id="diamond-count"></span>
-    </div>
-    </div>
+        <div id="mob-health-block">
+        <img src='icones/heart.png'
+          height="25px"
+          width="25px">
+        <span id="mob-health"></span>
+        </div>
+      </div>
+
+      <div id="gold-block">
+        <img src="icones/gold.png">
+        <span id="gold"></span>
+        <br>
+        x
+        <span id="gold-multiplier"></span>
+      </div>
+
+      <div id="next-cost-1" class="next-cost-blocks">
+        prochain coût : <span class="red-gold">10 or</span>
+      </div>
+
+      <div
+        id="mob-level-block"
+        class="buying-blocks"
+        style="display: none;"
+      >
+        niveau du monstre :
+        <span id="mob-level"></span>
+        <button id="buy-mob-level" class='solo-button'>
+          <img src="icones/level-up.jpg" height="10px" width="10px">
+        </button>
+        <button id="x10-level-button" class="multi-button">
+          x10
+        </button>
+        <br>
+        coût du prochain niveau :
+        <span id="mob-next-level-cost"></span> <img src="icones/gold.png">
+        <br>
+
+      </div>
+
+      <div
+      id="next-cost-2"
+      class="next-cost-blocks"
+      style="display: none;">
+        prochain coût : <span class="red-gold">50 or</span>
+      </div>
+
+      <div
+      id="clic-power-block"
+      class="buying-blocks"
+      style="display: none;">
+      puissance de clic :
+        <span id="clic-power"></span>
+        <img id="curseur-image" src="icones/curseur.png"
+          height="12px"
+          width="12px">
+        <button id="buy-clic-power" class='solo-button'><img src="icones/+.png" height="10px" width="10px"></button>
+        <button id="x10-clic-button" class="multi-button">x10</button>
+        <button id="x100-clic-button" class="multi-button">x100</button>
+        <button id="x1000-clic-button" class="multi-button">x1000</button>
+        <br>
+        coût : <span id="clic-power-cost"></span> <img src="icones/gold.png">
+      </div>
+
+      <div
+      id="next-cost-3"
+      class="next-cost-blocks"
+      style="display: none;">
+        prochain coût : <span class="red-gold">200 or</span>
+      </div>
+      <div
+      id="contamination"
+      class="buying-blocks"
+      style="display: none;">
+        covid :
+        <span id="dot-count"></span>
+        <img id="covid-ico" src="icones/covid-19.webp"
+          height="12px"
+          width="12px">
+          <button id="buy-dot-for-gold" class='solo-button'><img src="icones/+.png" height="10px" width="10px"></button>
+          <button id="x10-dot-button" class="multi-button">x10</button>
+          <button id="x100-dot-button" class="multi-button">x100</button>
+          <button id="x1000-dot-button" class="multi-button">x1000</button>
+          <br>
+          coût : 200 <img src="icones/gold.png">
+      </div>
+      <div
+        id="next-cost-4"
+        class="next-cost-blocks"
+        style="display: none;">
+        prochain coût : <span class="red-gold">1000 or</span>
+      </div>
+      <div
+      id="mining-block"
+      class="buying-blocks"
+      style="display: none;">
+        mineurs : <span id="miners">1</span>
+        <button id="miner-recruit" class='solo-button'><img src="icones/+.png" height="10px" width="10px"></button>
+        <br>
+          <div id="expedition-block" style="display: none;">
+          <p id="expedition-loading-text">expédition en cours... <span id="countdown"></span><br>
+          <button id="end-expedition-button">terminer l'expédition : <span id="end-expedition-cost"></span>
+          <img src="icones/gold.png"></button>
+          <br>
+          <span id="diamond-percentage"><br></span>% de chance de trouver un diamant</p>
+          <img src="icones/diamond.png"
+          height="15px"
+          width="15px"> : <span id="diamond-count"></span>
+      </div>
+      </div>
+  </div>
     <div id="next-world-1">
-      <button id="next-world-button-1">
-        5 diamants
+      <button id="next-world-button-1-A">
+        5 <img src="icones/diamond.png"
+        height="15px"
+        width="15px">
       </button>
     </div>
+    <span id="to-be-continued-text" style="display: none;">Suite en cours...</span>
     <div
     id="mob-block-2"
     style="display: none;">
