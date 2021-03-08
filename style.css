@@ -11,7 +11,8 @@ body {
 }
 
 #mob-block {
-  border: 5mm; border-style: solid;
+  border: 3px; border-style: solid;
+  margin-left: 25px;
   background-image: url('backgrounds/swamp.jpg') ;
   width: 200px;
 }
@@ -25,7 +26,7 @@ body {
 
 #world-1-title {
   margin-top: 30px;
-  margin-left: 30px;
+  margin-left: 50px;
 }
 
 #mob-health-block {
@@ -52,18 +53,73 @@ body {
   left: 400px;
 }
 
-#next-world-button-1 {
+#next-world-button-1-A {
   background-color: rgb(255, 255, 255);
   position: absolute;
-  right: -60px;
-  top: -30px;
+  left: 210px;
+  top: -60px;
+  width: 50px;
+  border: 2px solid;
+  border-color: rgb(36, 214, 0);
 }
 
-#next-world-button-1:hover{
+#next-world-button-1-A:hover{
   cursor: pointer;
   background-color: rgb(36, 214, 0);
 }
 
+#next-world-button-1-B {
+  background-color: rgb(255, 255, 255);
+  position: absolute;
+  left: 210px;
+  top: -60px;
+  width: 50px;
+  border: 2px solid;
+  border-color: red;
+}
+
+#next-world-button-1-B:hover{
+  cursor: pointer;
+  background-color: red;
+}
+
 #mob-image:hover{
   cursor: pointer;
+}
+
+#gold-block {
+  margin-left: 80px;
+  padding-left: 10px;
+  width: 50px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.next-cost-blocks {
+  padding-left: 50px;
+}
+
+.buying-blocks {
+  border: 0.5px solid;
+  width: 238px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  margin-bottom: 5px;
+  background-color: rgb(104, 136, 104);
+}
+
+#world-block-1 {
+  border: 5px solid;
+  width: 310px;
+  height: 800px;
+  padding-left: 50px;
+  background-color: rgb(104, 136, 104);
+}
+
+#to-be-continued-text {
+  position: absolute;
+  left: 550px;
+  top: 150px;
+  font-size: x-large;
 }
