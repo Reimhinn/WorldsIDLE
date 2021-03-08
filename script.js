@@ -42,6 +42,7 @@ const endExpeditionContainer = document.getElementById('end-expedition-button')
 const clicPowerCostContainer = document.getElementById('clic-power-cost')
 const toBeContinuedTextContainer = document.getElementById('to-be-continued-text')
 const worldBlock1Container = document.getElementById('world-block-1')
+const nextWorldText1Container = document.getElementById('next-world-text-1')
 
 mobImage.addEventListener('click', attackMob);
 buyMobLevelButtonContainer.addEventListener('click', buyMobLevel);
@@ -401,6 +402,7 @@ function updateData() {
     miningBLock.style.display = 'block';
     nextMob4Block.style.display = 'none';
     nextWorldButton1.style.display = 'block';
+    nextWorldText1Container.style.display = 'block';
   }
 
   if (diamond < 5){
