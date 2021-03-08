@@ -69,7 +69,7 @@ let clicPowerCost = 50;
 
 
 let mobHealth = baseMobHealth;
-let gold = 0;
+let gold = 100000;
 let mobLevel = 1;
 let damage = 1;
 let dot = 0;

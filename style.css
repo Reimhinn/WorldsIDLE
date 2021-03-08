@@ -123,3 +123,18 @@ body {
   top: 150px;
   font-size: x-large;
 }
+
+#next-world-text-1 {
+  position: absolute;
+  top: 100px;
+  left: 500px;
+  font-size: x-large;
+}
+
+#feels-bad-ico {
+  position: absolute;
+  left: -40px;
+  top: -20px;
+  height: 300px;
+  width: 300px;
+}
