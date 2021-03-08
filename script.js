@@ -59,7 +59,7 @@ minerRecruit.addEventListener('click', recruitMiner)
 endExpeditionContainer.addEventListener('click', endExpedition)
 
 let baseMobGold = 2;
-let baseMobHealth = 5;
+let baseMobHealth = 7;
 let baseMobLevelCost = 10;
 let baseDiamondCountDown = 30;
 let diamondChance = 0;
