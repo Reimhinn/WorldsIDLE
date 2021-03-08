@@ -1,0 +1,69 @@
+body > div {
+  margin: 20px 0;
+}
+
+body {
+  background-color: grey;
+}
+
+.red-gold {
+  color: rgb(200, 0, 0);
+}
+
+#mob-block {
+  border: 5mm; border-style: solid;
+  background-image: url('backgrounds/swamp.jpg') ;
+  width: 200px;
+}
+
+#mob-block-2 {
+  position: absolute;
+  bottom: 600px; left: 280px;
+  background-image: url('backgrounds/void.jpg');
+  border: 5mm; border-style: solid;
+}
+
+#world-1-title {
+  margin-top: 30px;
+  margin-left: 30px;
+}
+
+#mob-health-block {
+  margin-left: 15px;
+  color: rgb(255, 85, 85);
+  position: absolute;
+  top: 120px;
+}
+
+.multi-button {
+  color: blue;
+}
+.multi-button:hover {
+  cursor: pointer;
+}
+.solo-button:hover {
+  cursor: pointer;
+}
+
+#next-world-1 {
+  border-radius: 10cm;
+  position: absolute;
+  top: 180px;
+  left: 400px;
+}
+
+#next-world-button-1 {
+  background-color: rgb(255, 255, 255);
+  position: absolute;
+  right: -60px;
+  top: -30px;
+}
+
+#next-world-button-1:hover{
+  cursor: pointer;
+  background-color: rgb(36, 214, 0);
+}
+
+#mob-image:hover{
+  cursor: pointer;
+}
