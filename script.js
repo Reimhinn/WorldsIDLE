@@ -41,6 +41,7 @@ const endExpeditionCostContainer = document.getElementById('end-expedition-cost'
 const endExpeditionContainer = document.getElementById('end-expedition-button')
 const clicPowerCostContainer = document.getElementById('clic-power-cost')
 const toBeContinuedTextContainer = document.getElementById('to-be-continued-text')
+const worldBlock1Container = document.getElementById('world-block-1')
 
 mobImage.addEventListener('click', attackMob);
 buyMobLevelButtonContainer.addEventListener('click', buyMobLevel);
