@@ -80,12 +80,12 @@ let clicPowerCost = 50;
 audio.muted = false;
 
 let mobHealth = baseMobHealth;
-let gold = 100000;
+let gold = 0;
 let mobLevel = 1;
 let damage = 1;
 let dot = 0;
 let miner = 0;
-let diamond = 800;
+let diamond = 0;
 let searchTimer = 0;
 let drillTimer = 0;
 let drillingMachines = 0;
