@@ -169,7 +169,6 @@ function endExpedition() {
 }
 
 function getDiamondChancePercentage() {
-
   return miner * 2
 }
 
