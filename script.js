@@ -74,8 +74,6 @@ let baseMobGold = 2;
 let baseMobHealth = 7;
 let baseMobLevelCost = 10;
 let baseDiamondCountDown = 30;
-let diamondChance = 0;
-let minerPercentage = 0;
 let baseEndExpeditionCost = 3000;
 let clicPowerCost = 50;
 
@@ -91,6 +89,7 @@ let diamond = 800;
 let searchTimer = 0;
 let drillTimer = 0;
 let drillingMachines = 0;
+let diamondChance = 100 - getDiamondChancePercentage();
 
 let mobIsBoss = false;
 let mobIsBox = false;
@@ -170,9 +169,8 @@ function endExpedition() {
 }
 
 function getDiamondChancePercentage() {
-  minerPercentage = miner * 2;
-  diamondChance = 100 - minerPercentage;
-  return 100 - diamondChance;
+
+  return miner * 2
 }
 
 
@@ -258,8 +256,6 @@ function rollForBox() {
     mobIsBox = false;
   }
 }
-
-//refaire le roll//
 
 function rollForDiamond() {
   // let numberArray = [];
