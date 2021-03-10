@@ -127,6 +127,18 @@
           <img src="icones/diamond.png"
           height="15px"
           width="15px"> : <span id="diamond-count"></span>
+          <br>
+          <div id='drill-block' style="display: none;">
+            foreuses : <span id="drilling-machines"></span>
+            <button id="buy-drilling-machines"class='solo-button'><img src="icones/+.png" height="10px" width="10px"></button>
+            <br>
+            <div id="drilling-machines-bar">
+              <div id="loading-bar"></div>
+            </div>
+            coût : 400 <img src="icones/diamond.png"
+            height="15px"
+            width="15px">
+          </div>
       </div>
       </div>
   </div>
@@ -148,6 +160,13 @@
       height="200px"
       width="200px">
     </div>
+
+  <div id="audio-block">
+    <audio id="audio" loop autoplay src="songs/FirstSong.wav"></audio>
+    <button id="mute-button">music off</button>
+    <button id="play-button">music on</button>
+  </div>
+
     <script src="script.js"></script>
   </body>
 </html>

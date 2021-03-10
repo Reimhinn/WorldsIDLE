@@ -6,6 +6,10 @@ const boxFoundBlock = document.getElementById('box-found-block')
 const miningBLock = document.getElementById('mining-block')
 const expeditionBlock = document.getElementById('expedition-block')
 
+const audio = document.getElementById('audio')
+const muteButton = document.getElementById('mute-button')
+const playButton = document.getElementById('play-button')
+
 const goldContainer = document.getElementById('gold');
 const goldMultiplierContainer = document.getElementById('gold-multiplier');
 
@@ -43,6 +47,10 @@ const clicPowerCostContainer = document.getElementById('clic-power-cost')
 const toBeContinuedTextContainer = document.getElementById('to-be-continued-text')
 const worldBlock1Container = document.getElementById('world-block-1')
 const nextWorldText1Container = document.getElementById('next-world-text-1')
+const drillBlockContainer = document.getElementById('drill-block')
+const drillingMachinesNumber = document.getElementById('drilling-machines')
+const buyDrillingMachinesButton = document.getElementById('buy-drilling-machines')
+const loadingBarContainer = document.getElementById('loading-bar')
 
 mobImage.addEventListener('click', attackMob);
 buyMobLevelButtonContainer.addEventListener('click', buyMobLevel);
@@ -58,6 +66,9 @@ x1000DotButtonContainer.addEventListener('click', buyDotx1000)
 nextWorldButton1.addEventListener('click', goToNextWorld1)
 minerRecruit.addEventListener('click', recruitMiner)
 endExpeditionContainer.addEventListener('click', endExpedition)
+buyDrillingMachinesButton.addEventListener('click', buyDrillingMachines)
+muteButton.addEventListener('click', muteAudio)
+playButton.addEventListener('click', playAudio)
 
 let baseMobGold = 2;
 let baseMobHealth = 7;
@@ -68,20 +79,25 @@ let minerPercentage = 0;
 let baseEndExpeditionCost = 3000;
 let clicPowerCost = 50;
 
+audio.muted = false;
 
 let mobHealth = baseMobHealth;
-let gold = 0;
+let gold = 100000;
 let mobLevel = 1;
 let damage = 1;
 let dot = 0;
 let miner = 0;
-let diamond = 0;
-let timer = 0
+let diamond = 800;
+let searchTimer = 0;
+let drillTimer = 0;
+let drillingMachines = 0;
 
 let mobIsBoss = false;
 let mobIsBox = false;
 
 let diamondCountDownTime = baseDiamondCountDown;
+
+let diamondDrillNumber = drillingMachines * 5
 
 
 
@@ -134,10 +150,21 @@ function recruitMiner() {
   }
   }
 
+  function buyDrillingMachines() {
+    if (diamond >= 400) {
+      if (drillingMachines === 0) {
+        movingBar()}
+      diamond -= 400;
+      drillingMachines++;
+      updateData()
+    }
+  }
+
+
 function endExpedition() {
   if (gold >= 3000) {
     gold -= 3000
-    resetTimer()
+    resetSearchDiamondTimer()
     updateData()
   }
 }
@@ -149,27 +176,26 @@ function getDiamondChancePercentage() {
 }
 
 
-
 function searchForDiamond() {
   if (miner > 0) {
-  clearInterval(timer)
+  clearInterval(searchTimer)
   }
-  timer = setInterval(diamondTimer, 1000)
+  searchTimer = setInterval(searchDiamondTimer, 1000)
   updateData()
 }
 
 
-function resetTimer() {
+function resetSearchDiamondTimer() {
   searchForDiamond()
   rollForDiamond()
   diamondCountDownTime = 30
 }
 
 
-function diamondTimer() {
+function searchDiamondTimer() {
   diamondCountDownTime--
   if (diamondCountDownTime < 0) {
-    resetTimer()
+    resetSearchDiamondTimer()
   }
   updateData()
 }
@@ -343,6 +369,26 @@ function buyClicPowerx1000() {
 // }
 
 
+function movingBar () {
+  let i = 0;
+  if (i == 0) {
+    i = 1;
+    let width = 1;
+    let barTimer = setInterval(barFrame, 10)
+    function barFrame() {
+      if (width >= 100) {
+        clearInterval(barTimer);
+        diamond += 5 * drillingMachines
+        i = 0;
+        movingBar()
+      } else {
+        width++;
+        loadingBarContainer.style.width = width + "%";
+      }
+    }
+  }
+}
+
 
 function spawnBox () {
   mobImage.src = 'mob/close-box.png';
@@ -362,6 +408,14 @@ function goToNextWorld1 () {
   }
 }
 
+function muteAudio () {
+  audio.muted = true;
+}
+
+function playAudio () {
+  audio.muted = false
+}
+
 function updateData() {
   mobHealthContainer.textContent = mobHealth;
   goldContainer.textContent = gold;
@@ -376,6 +430,7 @@ function updateData() {
   diamondPercentageContainer.textContent = getDiamondChancePercentage();
   endExpeditionCostContainer.textContent = baseEndExpeditionCost;
   clicPowerCostContainer.textContent = clicPowerCost;
+  drillingMachinesNumber.textContent = drillingMachines;
 
   if (gold < 1000 && nextWorldButton1.style.display !== 'block')
   nextWorldButton1.style.display = 'none';
@@ -415,6 +470,9 @@ function updateData() {
     minerRecruit.style.display = 'none'
   }
 
+  if (diamond >= 400) {
+    drillBlockContainer.style.display = 'block'
+  }
 
   healthPercentage = getHealthPercentage();
 
