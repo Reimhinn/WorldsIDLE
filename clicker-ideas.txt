@@ -1,11 +1,9 @@
 Clicker :
 
 - changer les images pour correspondre aux univers
-- mettre des icones (gold, level, etc) (en cours)
-- enlever la protéine ou lui rajouter un utilité et changer son nom
 - faire des popups messages
-- faire le responsive
-- recommencer en React et possiblement changer d'univers ? (l'espace ?)
-- pouvoir partager le site
+- faire le responsive ?
+- ranger et recommencer en React et possiblement changer d'univers ? (l'espace ?)
 - displays grid et flex css
+- faire une interface profil pour les ressources et autres
 - noter toutes les questions pour Guillaume
