@@ -77,6 +77,8 @@ let baseDiamondCountDown = 30;
 let baseEndExpeditionCost = 3000;
 let clicPowerCost = 50;
 
+let saveIsDisabled = false;
+
 audio.muted = false;
 
 let mobHealth = baseMobHealth;
@@ -98,7 +100,80 @@ let diamondCountDownTime = baseDiamondCountDown;
 
 let diamondDrillNumber = drillingMachines * 5
 
+let playerHasUnlockedLevels = false;
+let playerHasUnlockedDamage = false;
+let playerHasUnlockedContamination = false;
+let playerHasUnlockedMining = false;
+let playerHasUnlockedDrilling = false;
 
+function getSave() {
+  const gameDataJson = localStorage.getItem('game');
+
+  if(!gameDataJson) {
+    return;
+  }
+
+  const gameData = JSON.parse(gameDataJson);
+
+  mobHealth = gameData.mobHealth;
+  gold = gameData.gold;
+  mobLevel = gameData.mobLevel;
+  damage = gameData.damage;
+  dot = gameData.dot;
+  miner = gameData.miner;
+  diamond = gameData.diamond;
+  searchTimer = gameData.searchTimer;
+  drillTimer = gameData.drillTimer;
+  drillingMachines = gameData.drillingMachines;
+  diamondChance = gameData.diamondChance;
+  playerHasUnlockedLevels = gameData.playerHasUnlockedLevels;
+  playerHasUnlockedDamage = gameData.playerHasUnlockedDamage;
+  playerHasUnlockedContamination = gameData.playerHasUnlockedContamination;
+  playerHasUnlockedMining = gameData.playerHasUnlockedMining;
+  playerHasUnlockedDrilling = gameData.playerHasUnlockedDrilling;
+
+  if(miner > 0){
+    searchForDiamond();
+  }
+
+  if(drillingMachines > 0) {
+    movingBar();
+  }
+}
+
+function createSave() {
+  if (saveIsDisabled) {
+    return;
+  }
+
+  const gameData = {
+    mobHealth: mobHealth,
+    gold: gold,
+    mobLevel: mobLevel,
+    damage: damage,
+    dot: dot,
+    miner: miner,
+    diamond: diamond,
+    searchTimer: searchTimer,
+    drillTimer: drillTimer,
+    drillingMachines: drillingMachines,
+    diamondChance: diamondChance,
+    playerHasUnlockedLevels: playerHasUnlockedLevels,
+    playerHasUnlockedDamage: playerHasUnlockedDamage,
+    playerHasUnlockedContamination: playerHasUnlockedContamination,
+    playerHasUnlockedMining: playerHasUnlockedMining,
+    playerHasUnlockedDrilling: playerHasUnlockedDrilling,
+  }
+
+  const gameDataJson = JSON.stringify(gameData);
+  localStorage.setItem('game', gameDataJson);
+}
+
+function resetSave() {
+  saveIsDisabled = true;
+  localStorage.removeItem('game');
+  window.location.reload();
+}
 
 function attackMob() {
   mobHealth -= damage;
@@ -143,7 +218,6 @@ function recruitMiner() {
   if (gold >= 1000) {
     gold -= 1000;
     miner++;
-    expeditionBlock.style.display = 'block';
     searchForDiamond()
     updateData()
   }
@@ -412,6 +486,12 @@ function playAudio () {
 }
 
 function updateData() {
+  playerHasUnlockedLevels ||= gold >= getMobLevelCost();
+  playerHasUnlockedDamage ||= gold >= 50;
+  playerHasUnlockedContamination ||= gold >= 200;
+  playerHasUnlockedMining ||= gold >= 1000;
+  playerHasUnlockedDrilling ||= diamond >= 400;
+
   mobHealthContainer.textContent = mobHealth;
   goldContainer.textContent = gold;
   goldMultiplierContainer.textContent = getGoldMultiplier();
@@ -427,45 +507,48 @@ function updateData() {
   clicPowerCostContainer.textContent = clicPowerCost;
   drillingMachinesNumber.textContent = drillingMachines;
 
-  if (gold < 1000 && nextWorldButton1.style.display !== 'block')
-  nextWorldButton1.style.display = 'none';
-
-  if (gold >= getMobLevelCost() && clicPowerBlock.style.display === 'none') {
+  if (playerHasUnlockedLevels) {
     mobLevelBlock.style.display = 'block';
     nextMob1Block.style.display = "none";
     nextMob2Block.style.display = 'block'
   }
 
-  if (gold >= 50 && contaminationBLock.style.display === 'none') {
+  if (playerHasUnlockedDamage) {
     clicPowerBlock.style.display = 'block';
     nextMob2Block.style.display = 'none';
     nextMob3Block.style.display = 'block'
   }
 
-  if (gold >= 200 && miningBLock.style.display === 'none') {
+  if (playerHasUnlockedContamination) {
     contaminationBLock.style.display = 'block';
     nextMob3Block.style.display = 'none';
     nextMob4Block.style.display = 'block';
   }
 
-  if (gold >= 1000 && toBeContinuedTextContainer.style.display === 'none') {
+  if (playerHasUnlockedMining) {
     miningBLock.style.display = 'block';
     nextMob4Block.style.display = 'none';
     nextWorldButton1.style.display = 'block';
     nextWorldText1Container.style.display = 'block';
-  }
 
-  if (diamond < 5){
-    nextWorldButton1.id = 'next-world-button-1-B'
+    if (miner > 0) {
+      expeditionBlock.style.display = 'block';
+    }
+
+    if (miner === 50) {
+      minerRecruit.style.display = 'none'
+    }
+
+    if (diamond < 5){
+      nextWorldButton1.id = 'next-world-button-1-B'
+    } else {
+      nextWorldButton1.id = 'next-world-button-1-A'
+    }
   } else {
-    nextWorldButton1.id = 'next-world-button-1-A'
+    nextWorldButton1.style.display = 'none';
   }
 
-  if (miner === 50) {
-    minerRecruit.style.display = 'none'
-  }
-
-  if (diamond >= 400) {
+  if (playerHasUnlockedDrilling) {
     drillBlockContainer.style.display = 'block'
   }
 
@@ -497,6 +580,8 @@ function updateData() {
   }
 }
 
+getSave();
+setInterval(createSave, 1000);
 
 updateData();
 
