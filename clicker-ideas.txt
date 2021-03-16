@@ -2,10 +2,10 @@ Clicker :
 
 - changer les images pour correspondre aux univers
 - faire des popups messages
-- faire le responsive ?
 - ranger et recommencer en React et possiblement changer d'univers ? (l'espace ?)
 - displays grid et flex css
 - faire une interface profil pour les ressources et autres
-- bouton prochain coût foreuses + multibutton
+- multibutton foreuses ?
 - faire des coût incrémentaux
-- noter toutes les questions pour Guillaume
+- corriger bug 5diamond
+- faire un bouton reset save
