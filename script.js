@@ -84,12 +84,12 @@ let saveIsDisabled = false;
 audio.muted = false;
 
 let mobHealth = baseMobHealth;
-let gold = 5000000;
+let gold = 0;
 let mobLevel = 1;
 let damage = 1;
 let dot = 0;
 let miner = 0;
-let diamond = 399;
+let diamond = 0;
 let searchTimer = 0;
 let drillTimer = 0;
 let drillingMachines = 0;
