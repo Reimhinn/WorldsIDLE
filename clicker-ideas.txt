@@ -6,4 +6,6 @@ Clicker :
 - ranger et recommencer en React et possiblement changer d'univers ? (l'espace ?)
 - displays grid et flex css
 - faire une interface profil pour les ressources et autres
+- bouton prochain coût foreuses + multibutton
+- faire des coût incrémentaux
 - noter toutes les questions pour Guillaume

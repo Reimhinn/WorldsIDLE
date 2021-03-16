@@ -19,6 +19,7 @@ const nextMob1Block = document.getElementById('next-cost-1')
 const nextMob2Block = document.getElementById('next-cost-2')
 const nextMob3Block = document.getElementById('next-cost-3')
 const nextMob4Block = document.getElementById('next-cost-4')
+const nextMob5Block = document.getElementById('next-cost-5')
 const mobLevelBlock = document.getElementById('mob-level-block');
 const mobLevelContainer = document.getElementById('mob-level');
 const mobLevelCostContainer = document.getElementById('mob-next-level-cost');
@@ -51,6 +52,7 @@ const drillBlockContainer = document.getElementById('drill-block')
 const drillingMachinesNumber = document.getElementById('drilling-machines')
 const buyDrillingMachinesButton = document.getElementById('buy-drilling-machines')
 const loadingBarContainer = document.getElementById('loading-bar')
+const covidDpsContainer = document.getElementById('covid-dps')
 
 mobImage.addEventListener('click', attackMob);
 buyMobLevelButtonContainer.addEventListener('click', buyMobLevel);
@@ -82,12 +84,12 @@ let saveIsDisabled = false;
 audio.muted = false;
 
 let mobHealth = baseMobHealth;
-let gold = 0;
+let gold = 5000000;
 let mobLevel = 1;
 let damage = 1;
 let dot = 0;
 let miner = 0;
-let diamond = 0;
+let diamond = 399;
 let searchTimer = 0;
 let drillTimer = 0;
 let drillingMachines = 0;
@@ -244,6 +246,10 @@ function endExpedition() {
 
 function getDiamondChancePercentage() {
   return miner * 2
+}
+
+function getCovidDps() {
+  return dot * 10;
 }
 
 
@@ -506,6 +512,7 @@ function updateData() {
   endExpeditionCostContainer.textContent = baseEndExpeditionCost;
   clicPowerCostContainer.textContent = clicPowerCost;
   drillingMachinesNumber.textContent = drillingMachines;
+  // covidDpsContainer.textContent = getCovidDps();
 
   if (playerHasUnlockedLevels) {
     mobLevelBlock.style.display = 'block';
@@ -530,6 +537,7 @@ function updateData() {
     nextMob4Block.style.display = 'none';
     nextWorldButton1.style.display = 'block';
     nextWorldText1Container.style.display = 'block';
+    nextMob5Block.style.display = 'block'
 
     if (miner > 0) {
       expeditionBlock.style.display = 'block';
@@ -545,12 +553,12 @@ function updateData() {
       nextWorldButton1.id = 'next-world-button-1-A'
     }
   } else {
-    nextWorldButton1.style.display = 'none';
-  }
+      nextWorldButton1.style.display = 'none';
+    }
 
-  if (playerHasUnlockedDrilling) {
-    drillBlockContainer.style.display = 'block'
-  }
+    if (playerHasUnlockedDrilling) {
+      drillBlockContainer.style.display = 'block'
+    }
 
   healthPercentage = getHealthPercentage();
 
@@ -563,7 +571,7 @@ function updateData() {
 
   if (mobIsBoss) {
     if (healthPercentage <= 100 && healthPercentage > 67) {
-        mobImage.src = 'mob/mob-boss-A.png';
+      mobImage.src = 'mob/mob-boss-A.png';
     } else if (healthPercentage <= 67 && healthPercentage > 34) {
         mobImage.src = 'mob/mob-boss-B.png';
     } else if (healthPercentage <= 34 && healthPercentage>= 0) {
