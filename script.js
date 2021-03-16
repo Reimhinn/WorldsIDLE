@@ -558,6 +558,7 @@ function updateData() {
 
     if (playerHasUnlockedDrilling) {
       drillBlockContainer.style.display = 'block'
+      nextMob5Block.style.display = 'none'
     }
 
   healthPercentage = getHealthPercentage();
